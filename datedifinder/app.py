@@ -296,7 +296,7 @@ if st.button('スケジュール生成'):
     validate_input_date(selected_date)
     
     # 選択したパターンに基づいてタスクリストを選択
-    tasks = tasks_a if pattern == 'Aパターン' else tasks_b
+    tasks = tasks_a if pattern == 'Aパターン_デザインテンプレ制作あり' else tasks_b
 
     # タスクの日付を計算
     calculated_dates = calculate_task_dates(tasks, selected_date, holidays)
