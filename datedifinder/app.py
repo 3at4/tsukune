@@ -11,12 +11,8 @@ def get_holidays(year):
 
 def calculate_business_day(start_date, delta_days, holidays):
     business_day = start_date
-    while delta_days != 0:
-        print(f"Calculating: business_day={business_day}, delta_days={delta_days}")  # デバッグ出力
-        try:
-            business_day -= timedelta(days=1)
-        except OverflowError:
-            raise OverflowError(f"Overflow error with date: {business_day}")
+    while delta_days > 0:
+        business_day -= timedelta(days=1)
         if business_day.weekday() < 5 and business_day not in holidays:
             delta_days -= 1
     return business_day
