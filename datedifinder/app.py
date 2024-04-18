@@ -28,6 +28,14 @@ def calculate_task_dates(tasks, end_date, holidays):
         task_dates.append((task["task"], task_start_date, task_end_date))
     return task_dates
 
+def calculate_end_date(start_date, delta_days, holidays):
+    end_date = start_date
+    while delta_days > 0:
+        end_date += timedelta(days=1)
+        if end_date.weekday() < 5 and end_date not in holidays:  # 土日と祝日を除外
+            delta_days -= 1
+    return end_date
+
 # タスクリストの定義（AパターンとBパターン）
 # Aパターンのタスクリスト
 tasks_a = [
