@@ -22,7 +22,8 @@ def calculate_task_dates(tasks, end_date, holidays):
     for task in tasks:
         task_start_date = calculate_business_day(end_date, task["start_at"], holidays)
         if task["days"] > 0:
-            task_end_date = calculate_business_day(task_start_date, task["days"] - 1, holidays)
+            # 終了日の計算には calculate_end_date 関数を使用
+            task_end_date = calculate_end_date(task_start_date, task["days"] - 1, holidays)
         else:
             task_end_date = task_start_date
         task_dates.append((task["task"], task_start_date, task_end_date))
@@ -273,7 +274,7 @@ tasks_b = [
 ]
 # ...（タスクリスト tasks_a と tasks_b の定義）
 
-st.title('スケジュールメイカー 決めるくん')
+st.title('スケジュールメーカー 決めるくん')
 
 selected_date = st.date_input("施策の開始日を選択してください", datetime.today())
 pattern = st.radio("タスクパターンを選択してください", ('Aパターン_デザインテンプレ制作あり', 'Bパターン_デザインテンプレ制作なし'))
